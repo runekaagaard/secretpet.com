@@ -1,0 +1,1 @@
+/usr/local/flex/bin/mxmlc -debug=true -static-link-runtime-shared-libraries Site.as -o ../build/site.swf
