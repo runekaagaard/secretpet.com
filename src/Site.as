@@ -1,6 +1,8 @@
 package {   
     // https://help.ubuntu.com/community/SWFTools.
     // http://chrissilich.com/blog/primal-screens-mic-as3-output-class/
+    // http://code.google.com/p/as3-commons/source/browse/trunk/as3-commons-collections/src/main/actionscript/org/as3commons/collections/utils/Sets.as?spec=svn1015&r=1015
+    // https://github.com/danschultz/as3-collections
     import flash.display.Sprite;
     import flash.display.MovieClip;
     import flash.text.TextField;
@@ -9,6 +11,10 @@ package {
 	import flash.events.TimerEvent;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
+	import flash.display.Stage;
+	import flash.display.StageAlign;
+	import flash.display.StageScaleMode;
+    import flash.display.StageDisplayState;
 	//import com.primalscreen.utils.Mic;
 	import Raindrop;
     
@@ -19,14 +25,16 @@ package {
         private var raindrop:Raindrop;
         
         public function Site() {
+            stage.frameRate = 20;
+            stage.align = StageAlign.TOP_LEFT
+            stage.scaleMode = StageScaleMode.NO_SCALE;
+            //stage.displayState = StageDisplayState.FULL_SCREEN;
             // Mic.say("This is a test", this);
-            this.raindrop = new Raindrop(this);
-            this.addChild(this.raindrop);            
-            addEventListener(Event.ENTER_FRAME, onEnterFrame);
+            for (var i:int=0; i<100; i++) {
+                var raindrop:Raindrop = new Raindrop(this, stage);
+                this.addChild(raindrop);            
+            }
         }
         
-        public function onEnterFrame(event:Event):void {
-           this.raindrop.y += 1;
-        }
     }
 }
